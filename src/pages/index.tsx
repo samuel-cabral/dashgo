@@ -12,7 +12,7 @@ export default function SignIn() {
     >
       <Text fontSize="6xl" fontWeight="bold" letterSpacing="tight">
         dashgo
-        <Text as="span" fontSize="6xl" fontWeight="bold" color="pink.600">
+        <Text as="span" ml="1" color="pink.500">
           .
         </Text>
       </Text>
