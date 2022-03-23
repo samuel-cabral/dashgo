@@ -30,7 +30,7 @@ export function Header() {
         <IconButton
           display="flex"
           aria-label="Open navigation"
-          icon={<Icon as={RiMenuLine} />}
+          icon={<Icon as={RiMenuLine} mr="4" />}
           fontSize="24"
           variant="unstyled"
           onClick={onOpen}
