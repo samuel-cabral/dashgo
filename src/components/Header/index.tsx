@@ -34,6 +34,7 @@ export function Header() {
           fontSize="24"
           variant="unstyled"
           onClick={onOpen}
+          boxShadow="none"
           mr="2"
         />
       )}

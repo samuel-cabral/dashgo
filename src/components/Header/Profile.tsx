@@ -20,6 +20,8 @@ export function Profile({ showProfileData = true }: ProfileProps) {
         size="md"
         name="Samuel Cabral"
         src="https://github.com/samuel-cabral.png"
+        showBorder
+        borderColor="pink.500"
       />
     </Flex>
   );
