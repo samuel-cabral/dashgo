@@ -1,4 +1,4 @@
-import { createServer, Factory, Model } from 'miragejs';
+import { createServer, Factory, Model, Response } from 'miragejs';
 import { faker } from '@faker-js/faker';
 
 type User = {
@@ -15,8 +15,8 @@ export function makeServer() {
 
     factories: {
       user: Factory.extend({
-        name() {
-          return faker.name.fullName();
+        name(i: number) {
+          return `User ${i} ${faker.name.fullName()}`;
         },
         email() {
           return faker.internet.email().toLowerCase();
@@ -28,14 +28,29 @@ export function makeServer() {
     },
 
     seeds(server) {
-      server.createList('user', 5);
+      server.createList('user', 200);
     },
 
     routes() {
       this.namespace = 'api';
       this.timing = 1000;
 
-      this.get('/users'); // shorthand to return all users
+      this.get('/users', function (schema, request) {
+        const { page = 1, per_page = 10 } = request.queryParams;
+
+        const total = schema.all('user').length;
+
+        const pageStart = (Number(page) - 1) * Number(per_page);
+        const pageEnd = pageStart + Number(per_page);
+
+        const users = this.serialize(schema.all('user')).users.slice(
+          pageStart,
+          pageEnd,
+        );
+
+        return new Response(200, { 'x-total-count': String(total) }, { users });
+      });
+
       this.post('/users'); // shorthand to create user
 
       this.namespace = '';

@@ -54,6 +54,7 @@
     "react/require-default-props": "off",
     "jsx-a11y/anchor-is-valid": "off",
     "react/function-component-definition": "off",
+    "camelcase": "off",
     "import/no-extraneous-dependencies": "off"
   },
   "settings": {
